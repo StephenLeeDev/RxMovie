@@ -24,7 +24,7 @@ object Repository {
             )
             .build()
 
-    val movieApiService: MovieApiService by lazy {
+    val movieService: MovieService by lazy {
         Retrofit.Builder()
             .baseUrl(Constant.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())

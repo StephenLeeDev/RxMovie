@@ -1,12 +1,12 @@
 package com.example.rxmovie.network
 
 import com.example.rxmovie.data.MovieModel
-import io.reactivex.Single
+import io.reactivex.Observable
 import retrofit2.http.GET
 
-interface MovieApiService {
+interface MovieService {
 
     @GET("movielist.json")
-    fun getMovies(): Single<List<MovieModel>>
+    fun getMovies(): Observable<List<MovieModel>>
 
 }
