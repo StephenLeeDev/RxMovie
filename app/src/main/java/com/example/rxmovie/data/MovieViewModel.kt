@@ -3,13 +3,16 @@ package com.example.rxmovie.data
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.rxmovie.network.Repository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class MovieViewModel : ViewModel() {
+@HiltViewModel
+class MovieViewModel @Inject constructor() : ViewModel() {
     val movieList = MutableLiveData<List<MovieModel>>()
 
     fun getMovieList() =
-        Repository.movieService
+        Repository.movieService()
             .getMovies()
             .subscribeOn(Schedulers.io())
             .subscribe { movies ->

@@ -7,8 +7,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rxmovie.data.MovieModel
 import com.example.rxmovie.databinding.ItemMovieBinding
+import javax.inject.Inject
 
-class MovieAdapter : ListAdapter<MovieModel, MovieAdapter.MovieViewHolder>(diffUtil) {
+class MovieAdapter @Inject constructor() : ListAdapter<MovieModel, MovieAdapter.MovieViewHolder>(diffUtil) {
 
     inner class MovieViewHolder(private val binding: ItemMovieBinding): RecyclerView.ViewHolder(binding.root) {
 

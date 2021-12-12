@@ -7,11 +7,14 @@ import com.example.rxmovie.adapter.MovieAdapter
 import com.example.rxmovie.data.MovieViewModel
 import com.example.rxmovie.data.MovieViewModelFactory
 import com.example.rxmovie.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var movieViewModel: MovieViewModel
-    private lateinit var adapter: MovieAdapter
+    @Inject lateinit var adapter: MovieAdapter
     private val binding: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
