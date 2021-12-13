@@ -1,11 +1,10 @@
 package com.example.rxmovie
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.example.rxmovie.adapter.MovieAdapter
 import com.example.rxmovie.data.MovieViewModel
-import com.example.rxmovie.data.MovieViewModelFactory
 import com.example.rxmovie.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -13,7 +12,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var movieViewModel: MovieViewModel
+    private val movieViewModel: MovieViewModel by viewModels()
     @Inject lateinit var adapter: MovieAdapter
     private val binding: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
@@ -33,7 +32,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun bindData() {
-        movieViewModel = ViewModelProvider(this, MovieViewModelFactory()).get(MovieViewModel::class.java)
         movieViewModel.movieList.observe(this) { movies ->
             adapter.submitList(movies)
         }

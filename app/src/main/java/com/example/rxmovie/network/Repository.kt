@@ -5,6 +5,7 @@ import com.example.rxmovie.Constant
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -18,8 +19,8 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object Repository {
 
-    @Singleton
     @Provides
+    @Singleton
     fun buildHttpClient(): OkHttpClient =
         OkHttpClient.Builder()
             .addInterceptor(
@@ -34,6 +35,7 @@ object Repository {
             .build()
 
     @Provides
+    @Singleton
     fun movieService(): MovieService =
         Retrofit.Builder()
             .baseUrl(Constant.BASE_URL)

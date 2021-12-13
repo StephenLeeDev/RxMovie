@@ -8,12 +8,12 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 @HiltViewModel
-class MovieViewModel @Inject constructor() : ViewModel() {
+class MovieViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
     val movieList = MutableLiveData<List<MovieModel>>()
 
     fun getMovieList() =
         Repository.movieService()
-            .getMovies()
+            .getAllMovies()
             .subscribeOn(Schedulers.io())
             .subscribe { movies ->
                 movieList.postValue(movies)
